@@ -22,8 +22,8 @@ from ..helpers.utils import reply_id
 from ..sql_helper.globals import gvarstatus
 from . import mention
 
-plugin_category = "العروض"
-STATS = gvarstatus("Z_STATS") or "فحص"
+plugin_category = "utils"
+STATS = gvarstatus("STATS") or "پشکنین"
 
 
 @zedub.zed_cmd(pattern=f"{STATS}$")
@@ -31,28 +31,28 @@ async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    zedevent = await edit_or_reply(event, "**⎆┊جـاري .. فحـص البـوت الخـاص بك**")
+    zedevent = await edit_or_reply(event, "**⿻┊‌ پشکنین بۆ بۆتی تایبەت بە تۆ ..**")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
-    Z_EMOJI = gvarstatus("ALIVE_EMOJI") or "✥┊"
-    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـوت  زدثــون 𝙕𝞝𝘿𝙏𝙃𝙊𝙉  يعمـل .. بنجـاح ☑️ 𓆩 **"
+    Z_EMOJI = gvarstatus("ALIVE_EMOJI") or "⿻┊‌"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "** بـۆتـی زیـرەك  𝙄𝙌 𝙐𝙎𝙀𝙍𝘽𝙊𝙏  کاردەکات .. بە سەرکەوتوویی ☑️ 𓆩 **"
     ZED_IMG = gvarstatus("ALIVE_PIC")
-    zed_caption = gvarstatus("ALIVE_TEMPLATE") or zed_temp
+    zed_caption = gvarstatus("ALIVE_TEMPLATE") or iq_temp
     caption = zed_caption.format(
         ALIVE_TEXT=ALIVE_TEXT,
         Z_EMOJI=Z_EMOJI,
         mention=mention,
         uptime=uptime,
         telever=version.__version__,
-        zdver=zedversion,
+        zdver=iqversion,
         pyver=python_version(),
         dbhealth=check_sgnirts,
         ping=ms,
     )
     if ZED_IMG:
         ZED = [x for x in ZED_IMG.split()]
-        PIC = random.choice(ZED)
+        PIC = random.choice(IQ)
         try:
             await event.client.send_file(
                 event.chat_id, PIC, caption=caption, reply_to=reply_to_id
@@ -61,7 +61,7 @@ async def amireallyalive(event):
         except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
             return await edit_or_reply(
                 zedevent,
-                f"**⌔∮ عـذراً عليـك الـرد ع صـوره او ميـديـا  ⪼  `.اضف صورة الفحص` <بالرد ع الصـوره او الميـديـا> ",
+                f"**میدیا هەڵەیە **\nبەستەر نییە بۆ بەکارهێنانی فەرمانەکە    \n `.زیادکردنی وێنەی پشکنین`\n\n**ناتوانی بەستەری وێنەکە وەربگریت  :-** `{PIC}`",
             )
     else:
         await edit_or_reply(
@@ -70,36 +70,34 @@ async def amireallyalive(event):
         )
 
 
-zed_temp = """{ALIVE_TEXT}
-
-**{Z_EMOJI} قاعدۿ البيانات :** تعمل بنـجاح
-**{Z_EMOJI} إصـدار التـيليثون :** `{telever}`
-**{Z_EMOJI} إصـدار زدثــون :** `{zdver}`
-**{Z_EMOJI} إصـدار البـايثون :** `{pyver}`
-**{Z_EMOJI} الوقـت :** `{uptime}`
-**{Z_EMOJI} المسـتخدم:** {mention}
-**{Z_EMOJI} قنـاة السـورس :** [اضغـط هنـا](https://t.me/ZedThon)"""
-
+iq_temp = """{ALIVE_TEXT}
+**‎{Z_EMOJI}‌‎𝙽𝙰𝙼𝙴 𖠄 {mention}** ٫
+**‌‎{Z_EMOJI}‌‎𝙿𝚈𝚃𝙷𝙾𝙽 𖠄 {pyver}** ٫
+**‌‎{Z_EMOJI}‌‎𝙸𝚀 𖠄 {telever}** ٫
+**‌‎{Z_EMOJI}‌‎𝚄𝙿𝚃𝙸𝙼𝙴 𖠄 {uptime}** ٫
+‌‎**{Z_EMOJI}‌‎‌‎𝙿𝙸𝙽𝙶 𖠄 {ping}** ٫
+**{Z_EMOJI} چەناڵی سەرچاوە🖤 :** [ئێرە دابگرە](https://t.me/IQUSER0)"""
+**𖠄 𝙄𝙌 𝙐𝙎𝙀𝙍𝘽𝙊𝙏 𖠄**"""
 
 @zedub.zed_cmd(
-    pattern="الفحص$",
-    command=("الفحص", plugin_category),
+    pattern="پشکنینن$",
+    command=("پشکنینن", plugin_category),
     info={
-        "header": "- لـ التحـقق من ان البـوت يعمـل بنجـاح .. بخـاصيـة الانـلايـن ✓",
-        "الاسـتخـدام": [
-            "{tr}الفحص",
+        "header": "- ـۆ پشکنین کە بۆتەکە بە سەرکەوتوویی کار دەکات تایبەتمەندی سەرهێڵ ✓",
+        "بەکارهێنان": [
+            "{tr}پشکنینن",
         ],
     },
 )
 async def amireallyialive(event):
     "A kind of showing bot details by your inline bot"
     reply_to_id = await reply_id(event)
-    Z_EMOJI = gvarstatus("ALIVE_EMOJI") or "✥┊"
-    zed_caption = "** بـوت  زدثــون 𝙕𝞝𝘿𝙏𝙃𝙊𝙉  يعمـل .. بنجـاح ☑️ 𓆩 **\n"
-    zed_caption += f"**{Z_EMOJI} إصـدار التـيليثون :** `{version.__version__}\n`"
-    zed_caption += f"**{Z_EMOJI} إصـدار زدثــون :** `{zedversion}`\n"
-    zed_caption += f"**{Z_EMOJI} إصـدار البـايثون :** `{python_version()}\n`"
-    zed_caption += f"**{Z_EMOJI} المسـتخدم :** {mention}\n"
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "✥┊"
+    zed_caption = "** بـۆتی زیـرەك 𝙄𝙌 𝘽𝙊𝙏  کاردەکات .. بە سەرکەوتوویی ☑️ 𓆩 **\n"
+    zed_caption += f"**{Z_EMOJI} وەشانی تێلثۆن :** `{version.__version__}\n`"
+    zed_caption += f"**{Z_EMOJI} وەشانی بـۆتی زیرەك :** `{iqversion}`\n"
+    zed_caption += f"**{Z_EMOJI} وەشانی پایثۆن :** `{python_version()}\n`"
+    zed_caption += f"**{Z_EMOJI} بەکارهێنەر :** {mention}\n"
     results = await event.client.inline_query(Config.TG_BOT_USERNAME, zed_caption)
     await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
     await event.delete()
