@@ -20,34 +20,34 @@ from ..helpers.tools import media_type
 from ..helpers.utils import reply_id
 from . import zedub, song_download, mention
 
-plugin_category = "البحث"
+plugin_category = "گۆرانی"
 LOGS = logging.getLogger(__name__)
 
 # =========================================================== #
 #                           STRINGS                           #
 # =========================================================== #
-SONG_SEARCH_STRING = "<b>╮ جـارِ البحث ؏ـن الاغنيـٓه... 🎧♥️╰</b>"
-SONG_NOT_FOUND = "<b>❈╎لـم استطـع ايجـاد المطلـوب .. جرب البحث باستخـدام الامـر (.اغنيه)</b>"
-SONG_SENDING_STRING = "<b>╮ جـارِ تحميـل الاغنيـٓه... 🎧♥️╰</b>"
+SONG_SEARCH_STRING = "<b>╮ گةًڕآنَِٰہ بّہۆ گۆرٰآنَِٰہی... 🎧♥️╰</b>"
+SONG_NOT_FOUND = "<b>❈╎نەمتوانی ئەوە بدۆزمەوە کە پێویست بوو. هەوڵ بدە بە بەکارهێنانی فرمان بگەڕێ (.گۆرانی)</b>"
+SONG_SENDING_STRING = "<b>╮ دُآگرٰ تَہَٰنَِٰہی گۆرٰآنَِٰہی... 🎧♥️╰</b>"
 # =========================================================== #
 #                                                             #
 # =========================================================== #
 
 
 @zedub.zed_cmd(
-    pattern="بحث(320)?(?:\s|$)([\s\S]*)",
-    command=("بحث", plugin_category),
+    pattern="گۆرانی(320)?(?:\s|$)([\s\S]*)",
+    command=("گۆرانی", plugin_category),
     info={
-        "header": "لـ تحميـل الاغـانـي مـن يـوتيـوب",
-        "امـر مضـاف": {
-            "320": "لـ البحـث عـن الاغـانـي وتحميـلهـا بـدقـه عـاليـه 320k",
+        "header": "بۆ داگرتنی گۆرانی لە یوتوب",
+        "فەرمان": {
+            "320": " گەڕان بۆ گۆرانی و داگرتنی بە کوالێتی بەرز 320k",
         },
-        "الاسـتخـدام": "{tr}بحث + اسـم الاغنيـه",
-        "مثــال": "{tr}بحث حسين الجسمي احبك",
+        "بەکارهێنان": "{tr}گۆرانی + ناوی گۆرانی",
+        "نموونە": "{tr}گۆرانی after dark",
     },
 )
 async def song(event):
-    "لـ تحميـل الاغـانـي مـن يـوتيـوب"
+    "بۆ داگرتنی گۆرانی لە یوتوب"
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
     if event.pattern_match.group(2):
@@ -55,13 +55,13 @@ async def song(event):
     elif reply and reply.message:
         query = reply.message
     else:
-        return await edit_or_reply(event, "**❈╎قم باضافـة الاغنيـه للامـر .. بحث + اسـم الاغنيـه**")
+        return await edit_or_reply(event, "**❈╎زیادرکردنی گۆرانی بۆ فەرمانەکە .. گۆرانی + ناوی گۆرانی**")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**╮ جـارِ البحث ؏ـن الاغنيـٓه... 🎧♥️╰**")
+    catevent = await edit_or_reply(event, "**╮ گةًڕآنَِٰہ بّہۆ گۆرٰآنَِٰہی... 🎧♥️╰**")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
-            f"**❈╎عـذراً .. لـم استطـع ايجـاد** {query}"
+            f"**❈╎ببوورە ..  هیچ شتێك نەدۆزرایەوە ** {query}"
         )
     cmd = event.pattern_match.group(1)
     q = "320k" if cmd == "320" else "128k"
@@ -70,7 +70,7 @@ async def song(event):
         event.chat_id,
         song_file,
         force_document=False,
-        caption=f"**⌔╎البحث :** `{title}`\n**⌔╎للمستخدم :**  {mention}",
+        caption=f"**❈╎گەڕان :** `{title}`",
         thumb=catthumb,
         supports_streaming=True,
         reply_to=reply_to_id,
@@ -82,16 +82,16 @@ async def song(event):
 
 
 @zedub.zed_cmd(
-    pattern="فيديو(?:\s|$)([\s\S]*)",
-    command=("فيديو", plugin_category),
+    pattern="ڤیدیۆ(?:\s|$)([\s\S]*)",
+    command=("ڤیدیۆ", plugin_category),
     info={
-        "header": "لـ تحميـل مقـاطـع الفيـديـو مـن يـوتيـوب",
-        "الاسـتخـدام": "{tr}فيديو + اسـم المقطـع",
-        "مثــال": "{tr}فيديو حالات واتس",
+        "سەری پەڕە": " بۆ داگرتنی ڤیدیۆ لە یوتوب",
+        "بەکارهێنان": "{tr}ڤیدیۆ + ناوی کلیپ",
+        "نموونە": "{tr}ڤیدیۆ AOT",
     },
 )
 async def vsong(event):
-    "لـ تحميـل مقـاطـع الفيـديـو مـن يـوتيـوب"
+    "بـۆ داگرتنی ڤیدیۆ لە یوتوب"
     reply_to_id = await reply_id(event)
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
@@ -99,13 +99,13 @@ async def vsong(event):
     elif reply and reply.message:
         query = reply.message
     else:
-        return await edit_or_reply(event, "**❈╎قم باضافـة الاغنيـه للامـر .. فيديو + اسـم الفيديـو**")
+        return await edit_or_reply(event, "**❈╎زیادکردنی گۆرانییەکە بۆ فەرمانەکە .. ڤیدیۆ + ناوی ڤیدیۆ**")
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    catevent = await edit_or_reply(event, "**╮ جـارِ البحث ؏ـن الفيديـو... 🎧♥️╰**")
+    catevent = await edit_or_reply(event, "**╮ گةًڕآنَِٰہ بّہۆ ڤیدُیۆ... 🎧♥️╰**")
     video_link = await yt_search(str(query))
     if not url(video_link):
         return await catevent.edit(
-            f"**❈╎عـذراً .. لـم استطـع ايجـاد** {query}"
+            f"**❈╎ببوورە ..  هیچ شتێك نەدۆزرایەوە ** {query}"
         )
     with contextlib.suppress(BaseException):
         cat = Get(cat)
@@ -114,7 +114,7 @@ async def vsong(event):
     await event.client.send_file(
         event.chat_id,
         vsong_file,
-        caption=f"**⌔╎الفيديـو :** `{title}`\n**⌔╎للمستخدم :**  {mention}",
+        caption=f"**❈╎گەڕان :** `{title}`",
         thumb=catthumb,
         supports_streaming=True,
         reply_to=reply_to_id,
@@ -126,15 +126,16 @@ async def vsong(event):
 
 
 @zedub.zed_cmd(
-    pattern="ابحث(?:\ع|$)([\s\S]*)",
-    command=("ابحث", plugin_category),
+    pattern="شەزەم(?:\ش|$)([\s\S]*)
+    command=("شەزەم", plugin_category),
     info={
-        "header": "To reverse search song.",
-        "الوصـف": "Reverse search audio file using shazam api",
-        "امـر مضـاف": {"ع": "To send the song of sazam match"},
-        "الاستخـدام": [
-            "{tr}ابحث بالــرد ع بصمـه او مقطـع صوتي",
-            "{tr}ابحث ع بالــرد ع بصمـه او مقطـع صوتي",
+        "سەری پەڕە": "To reverse search song.",
+        "وەسف": "Reverse search audio file using shazam api",
+        "فهرمان": {"ع": "To send the song of sazam match"},
+        "بەکارهێنان": [
+            "{tr}شەزەم <وەڵامدانەوەی ڤۆیس/دەنگ>",
+            "{tr}شەزەم <وەڵامدانەوەی ڤۆیسی ogg/دەنگ>",
+            "{tr}شەزەم s<وەڵامدانەوەی ڤۆیسی پەنجەمۆر/دەنگ>",
         ],
     },
 )
@@ -144,12 +145,12 @@ async def shazamcmd(event):
     mediatype = await media_type(reply)
     chat = "@DeezerMusicBot"
     delete = False
-    flag = event.pattern_match.group(1)
+    flag = event.pattern_match.group(4)
     if not reply or not mediatype or mediatype not in ["Voice", "Audio"]:
         return await edit_delete(
-            event, "**- بالــرد ع مقطـع صـوتي**"
+            event, "**- بە وەڵامدانەوەی کلیپی دەنگی **"
         )
-    catevent = await edit_or_reply(event, "**- جـار تحميـل المقـطع الصـوتي ...**")
+    catevent = await edit_or_reply(event, "**- کلیپی دەنگی دادەبەزێت ...**")
     name = "cat.mp3"
     try:
         for attr in getattr(reply.document, "attributes", []):
@@ -168,7 +169,7 @@ async def shazamcmd(event):
     except Exception as e:
         LOGS.error(e)
         return await edit_delete(
-            catevent, f"**- خطـأ :**\n__{e}__"
+            catevent, f"**- هەڵە :**\n__{e}__"
         )
 
     file = track["images"]["background"]
@@ -180,7 +181,7 @@ async def shazamcmd(event):
             try:
                 purgeflag = await conv.send_message("/start")
             except YouBlockedUserError:
-                await zedub(unblock("DeezerMusicBot"))
+                await iqub(unblock("DeezerMusicBot"))
                 purgeflag = await conv.send_message("/start")
             await conv.get_response()
             await event.client.send_read_acknowledge(conv.chat_id)
@@ -195,7 +196,7 @@ async def shazamcmd(event):
     await event.client.send_file(
         event.chat_id,
         file,
-        caption=f"<b>- المقطـع الصـوتي :</b> <code>{title}</code>\n<b>- الرابـط : <a href = {slink}/1>YouTube</a></b>",
+        caption=f"<b>- کلیپی دەنگی :</b> <code>{title}</code>\n<b>- بەستەر : <a href = {slink}/1>YouTube</a></b>",
         reply_to=reply,
         parse_mode="html",
     )
@@ -205,17 +206,17 @@ async def shazamcmd(event):
 
 
 @zedub.zed_cmd(
-    pattern="اغنيه(?:\s|$)([\s\S]*)",
-    command=("اغنيه", plugin_category),
+    pattern="گۆرانیی(?:\s|$)([\s\S]*)",
+    command=("گۆرانیی", plugin_category),
     info={
-        "header": "لـ تحميـل الاغـانـي مـن يـوتيـوب",
-        "الوصـف": "Searches the song you entered in query and sends it quality of it is 320k",
-        "الاسـتخـدام": "{tr}اغنيه <اسم الاغنيـه>",
-        "مثــال": "{tr}اغنيه محمد السالم وهيلي لوف",
+        "سەری پەڕ": "بۆ داگرتنی گۆرانی لە یوتوب",
+        "وەسف": "Searches the song you entered in query and sends it quality of it is 320k",
+        "بەکارهێنان": "{tr}گۆرانیی <ناوی گۆرانی>",
+        "نموونە": "{tr}گۆرانیی حەمە کرماشانی",
     },
 )
 async def song2(event):
-    "لـ تحميـل الاغـانـي مـن يـوتيـوب"
+    "بۆ داگرتنی گۆرانی لە یوتوب"
     song = event.pattern_match.group(1)
     chat = "@CatMusicRobot"
     reply_id_ = await reply_id(event)
@@ -224,7 +225,7 @@ async def song2(event):
         try:
             purgeflag = await conv.send_message(song)
         except YouBlockedUserError:
-            await zedub(unblock("CatMusicRobot"))
+            await iqub(unblock("CatMusicRobot"))
             purgeflag = await conv.send_message(song)
         music = await conv.get_response()
         await event.client.send_read_acknowledge(conv.chat_id)
@@ -234,7 +235,7 @@ async def song2(event):
         await event.client.send_file(
             event.chat_id,
             music,
-            caption=f"<b>- البحث :- <code>{song}</code></b>",
+            caption=f"<b>- گەڕان :- <code>{song}</code></b>",
             parse_mode="html",
             reply_to=reply_id_,
         )
