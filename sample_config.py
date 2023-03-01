@@ -31,12 +31,12 @@ class Config(object):
     TZ = os.environ.get("TZ", "Asia/Baghdad")
     # set this with required zed repo link
     UPSTREAM_REPO = os.environ.get(
-        "UPSTREAM_REPO", "https://github.com/Zed-Thon/Zelzal"
+        "UPSTREAM_REPO", "https://github.com/vtvit/IQbot"
     )
     # External plugins repo
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "no") and not url(EXTERNAL_REPO):
-        EXTERNAL_REPO = "https://github.com/Zed-Thon/ZedPlugins"
+        EXTERNAL_REPO = "https://github.com/vtvit/IqPlugins"
     # if you need badcat plugins use the following vars
     OLDZED = os.environ.get("OLDZED", "no")
     OLDZED = bool(OLDZED and (OLDZED.lower() != "no"))
@@ -80,14 +80,14 @@ class Config(object):
     ZI_FN = os.environ.get("ZI_FN", "𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵𝟬")
     CUSTOM_PMPERMIT_TEXT = os.environ.get("CUSTOM_PMPERMIT_TEXT", None)
 
-    # Custom vars for zthon
+    # Custom vars for IQ
     # set this will channel id of your custom plugins
     PLUGIN_CHANNEL = int(os.environ.get("PLUGIN_CHANNEL") or 0)
     # set this value with your required name for telegraph plugin
-    TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "ZThon")
+    TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "IQ")
     # for custom thumb image set this with your required thumb telegraoh link
     THUMB_IMAGE = os.environ.get(
-        "THUMB_IMAGE", "https://telegra.ph/file/c91c09fb188f0f281e628.jpg"
+        "THUMB_IMAGE", "https://telegra.ph/file/2e70b06a5447499e79626.jpg"
     )
     # specify NO_LOAD with plugin names for not loading in userbot
     NO_LOAD = list(os.environ.get("NO_LOAD", "").split())
@@ -182,7 +182,7 @@ class Config(object):
     BOTLOG_CHATID = 0
     # extra plugins realted vars below  4
     EXTERNAL_REPOBRANCH = os.environ.get("EXTERNAL_REPOBRANCH", "main")
-    OLDZED_REPO = os.environ.get("OLDZED_REPO", "https://github.com/Zed-Thon/ZED_USERBOT")
+    OLDZED_REPO = os.environ.get("OLDZED_REPO", "https://github.com/vtvit/iquser")
     if OLDZED_REPO and not url(OLDZED_REPO):
         OLDZED_REPO = "https://github.com/Zed-Thon/ZED_USERBOT"
     OLDZED_REPOBRANCH = os.environ.get("OLDZED_REPOBRANCH", "oldzed")
