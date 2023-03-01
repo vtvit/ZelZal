@@ -36,7 +36,7 @@ class Config(object):
     # External plugins repo
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "no") and not url(EXTERNAL_REPO):
-        EXTERNAL_REPO = "https://github.com/vtvit/IqPlugins"
+        EXTERNAL_REPO = "https://github.com/vtvit/IQPlugins"
     # if you need badcat plugins use the following vars
     OLDZED = os.environ.get("OLDZED", "no")
     OLDZED = bool(OLDZED and (OLDZED.lower() != "no"))
@@ -184,7 +184,7 @@ class Config(object):
     EXTERNAL_REPOBRANCH = os.environ.get("EXTERNAL_REPOBRANCH", "main")
     OLDZED_REPO = os.environ.get("OLDZED_REPO", "https://github.com/vtvit/iquser")
     if OLDZED_REPO and not url(OLDZED_REPO):
-        OLDZED_REPO = "https://github.com/Zed-Thon/ZED_USERBOT"
+        OLDZED_REPO = "https://github.com/vtvit/iquser"
     OLDZED_REPOBRANCH = os.environ.get("OLDZED_REPOBRANCH", "oldzed")
 
 
