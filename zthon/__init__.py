@@ -19,7 +19,7 @@ __copyright__ = f"ZThon Copyright (C) 2021 - 2022  {__author__}"
 
 zedub.version = __version__
 zedub.tgbot.version = __version__
-LOGS = logging.getLogger("زدثــون")
+LOGS = logging.getLogger("زیـرەك")
 bot = zedub
 
 
@@ -28,7 +28,7 @@ zedversion = "3.1.1"
 
 
 def close_connection(*_):
-    print("تم اغلاق الاتصال بالسورس")
+    print("پەیوەندی کردن بە سەرچاوە")
     runasync(sbb_b.disconnect())
     sys.exit(143)
 
