@@ -155,23 +155,24 @@ class ZedUserBotClient(TelegramClient):
                         if Config.PRIVATE_GROUP_BOT_API_ID == 0:
                             return
                         date = (datetime.datetime.now()).strftime("%m/%d/%Y, %H:%M:%S")
-                        ftext = f"\nيتم تحميل هذا الملف فقط هنا ،\
-                                  \n\nنسجل فقـط تقريـر الإشعـار وتـاريخـه ،\
-                                  \n\nنحن نحترم خصوصيتك.\
-                                  \n\nفقـط قـم بإعـادة توجيـه هـذه الرسـالة إلى مطـور السـورس @zzzzl1l\
-                                  \n\n--------بـدء تتبـع سجـل زدثـــون 𝗭𝗧𝗵𝗼𝗻--------\
-                                  \n- التـاريـخ : {date}\n- ايـدي الكـروب : {str(check.chat_id)}\
-                                  \n- ايـدي الشخـص : {str(check.sender_id)}\
-                                  \n- رابـط الرسـالـه : {await check.client.get_msg_link(check)}\
-                                  \n\n- التقـريـر :\n{str(check.text)}\
-                                  \n\n- التفـاصـيل :\n{str(traceback.format_exc())}\
-                                  \n\n- نـص الإشعـار :\n{str(sys.exc_info()[1])}"
+                        date = (datetime.datetime.now()).strftime("%m/%d/%Y, %H:%M:%S")
+                        ftext = f"\nدادەبەزێت تەنھا لێرە ،\
+                                  \n\nئێمە تەنها ڕاپۆرتی ئاگاداریەکان و بەروارەکەی تۆمار دەکەین ،\
+                                  \n\nئێمە ڕێز لە تایبەتمەندیەکەت دەگرین.\
+                                  \n\nناردنی ئەم نامەیە تەنھا بۆ گەشەپێدەری سەرچاوەیە @VTVIT\
+                                  \n\n--------دەستپێکردنی تۆماری بە دواکەوتنی بۆتی زیرەك 𝙄𝙌𝙐𝙎𝙀𝙍 メ--------\
+                                  \n- بەروار : {date}\n- ناسنامەی گرووپ  : {str(check.chat_id)}\
+                                  \n- ناسنامەی کەسەکە : {str(check.sender_id)}\
+                                  \n- بەستەری نامەکە : {await check.client.get_msg_link(check)}\
+                                  \n\n- ڕاپۆرت :\n{str(check.text)}\
+                                  \n\n- وردەکاریەکان :\n{str(traceback.format_exc())}\
+                                  \n\n- دەقی ئاگاداری :\n{str(sys.exc_info()[1])}"
                         new = {
                             "error": str(sys.exc_info()[1]),
                             "date": datetime.datetime.now(),
                         }
-                        ftext += "\n\n--------نهـاية سجـل تتبـع زدثـــون 𝗭𝗧𝗵𝗼𝗻--------"
-                        ftext += "\n\n\n- آخـر 5 ملفـات تم تحديثهـا :\n"
+                        ftext += "\n\n--------کۆتا تۆماری بە دواکەوتنی بۆتی زیرەك 𝙄𝙌𝙐𝙎𝙀𝙍 メ--------"
+                        ftext += "\n\n\n- دوا 5 فایل نوێکرایەوە :\n"
                         command = 'git log --pretty=format:"%an: %s" -5'
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
@@ -179,16 +180,16 @@ class ZedUserBotClient(TelegramClient):
                         pastelink = await paste_message(
                             ftext, pastetype="s", markdown=False
                         )
-                        link = "[𐇮 𝙕𝞝𝙇𝙕𝘼𝙇 الهہـيـٖ͡ـ͢ـبـه 𐇮](https://t.me/zzzzl1l)"
+                        link = "[𐇮 𝙑𝙏𝙑𝙄𝙏 𝞝 بۆتی زیرەك 𐇮](https://t.me/VTVIT)"
                         text = (
-                            "**✘ تقـريـر اشعـار زدثـــون 𝗭𝗧𝗵𝗼𝗻 ✘**\n\n"
-                            + "- يمكنك الإبـلاغ عن هـذا الاشعـار .. "
+                            "**✘ ڕاپۆرتی ئاگاداری بۆتی زیرەك  𝙄𝙌 ✘**\n\n"
+                            + "- دەتوانیت ڕاپۆرتی ئەم تێبینیە بدەیت .. "
                         )
-                        text += f"- فقط قم بإعـادة توجيـه هـذه الرسـالة إلى مطـور السـورس {link}.\n\n"
+                        text += f"- ناردنی ئەم نامەیە تەنھا بۆ گەشەپێدەری سەرچاوەیە{link}.\n\n"
                         text += (
-                            "- لـ اعـلام المطـور بالاشعـار .. حتـى يتـم ملاحظتـه\n\n"
+                            "-بۆ ئاگادارکردنەوەی گەشەپێدەرەکە لە ئاگاداریەکە .. تا ئەو کاتەی ئاگاداری  دەکەیتەوە\n\n"
                         )
-                        text += f"**- رسـالة الإشعـار :** [{new['error']}]({pastelink})"
+                        text += f"**- نامەی ئاگاداری :** [{new['error']}]({pastelink})"
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
@@ -276,38 +277,38 @@ class ZedUserBotClient(TelegramClient):
                         if Config.PRIVATE_GROUP_BOT_API_ID == 0:
                             return
                         date = (datetime.datetime.now()).strftime("%m/%d/%Y, %H:%M:%S")
-                        ftext = f"\nيتم تحميل هذا الملف فقط هنا ،\
-                                  \n\nنسجل فقـط تقريـر الإشعـار وتـاريخـه ،\
-                                  \n\nنحن نحترم خصوصيتك.\
-                                  \n\nفقـط قـم بإعـادة توجيـه هـذه الرسـالة إلى مطـور السـورس @zzzzl1l\
-                                  \n\n--------بـدء تتبـع سجـل زدثـــون 𝗭𝗧𝗵𝗼𝗻--------\
-                                  \n- التـاريـخ : {date}\n- ايـدي الكـروب : {str(check.chat_id)}\
-                                  \n- ايـدي الشخـص : {str(check.sender_id)}\
-                                  \n- رابـط الرسـالـه : {await check.client.get_msg_link(check)}\
-                                  \n\n- التقـريـر :\n{str(check.text)}\
-                                  \n\n- التفـاصـيل :\n{str(traceback.format_exc())}\
-                                  \n\n- نـص الإشعـار :\n{str(sys.exc_info()[1])}"
+                        ftext = f"\nفایلەکە دادەبەزێت تەنھا لێرە ،\
+                                  \n\nئێمە تەنھا ڕاپۆرتی ئاگاداریەکان و بەروارەکە تۆمار دەکەین ،\
+                                  \n\nئێمە ڕێز لە تایبەتمەندیەکەت دەگرین.\
+                                  \n\nناردنی ئەم نامەیە تەنھا بۆ گەشەپێدەری سەرچاوەیە @IQ7amo\
+                                  \n\n--------دەستپێکردنی تۆماری بەدواکەوتنی بۆتی زیرەك 𝙄𝙌𝙐𝙎𝙀𝙍 メ--------\
+                                  \n- بەروار : {date}\n- ناسنامەی گرووپ : {str(check.chat_id)}\
+                                  \n- ناسنامەی کەسەکە : {str(check.sender_id)}\
+                                  \n- بەستەری نامەکە : {await check.client.get_msg_link(check)}\
+                                  \n\n- ڕاپۆرت :\n{str(check.text)}\
+                                  \n\n- وردەکاریەکان :\n{str(traceback.format_exc())}\
+                                  \n\n- دەقی ئاگاداری :\n{str(sys.exc_info()[1])}"
                         new = {
                             "error": str(sys.exc_info()[1]),
                             "date": datetime.datetime.now(),
                         }
-                        ftext += "\n\n--------نهـاية سجـل تتبـع زدثـــون 𝗭𝗧𝗵𝗼𝗻--------"
+                        ftext += "\n\n--------کۆتا تۆماری بەدواکەوتنی بۆتی زیرەك 𝙄𝙌𝙐𝙎𝙀𝙍 メ--------"
                         command = 'git log --pretty=format:"%an: %s" -5'
-                        ftext += "\n\n\n- آخـر 5 ملفـات تم تحديثهـا :\n"
+                        ftext += "\n\n\n- دوا 5 فایل نوێکرایەوە :\n"
                         output = (await runcmd(command))[:2]
                         result = output[0] + output[1]
                         ftext += result
                         pastelink = await paste_message(
                             ftext, pastetype="s", markdown=False
                         )
-                        text = "**✘ تقـريـر اشعـار زدثـــون 𝗭𝗧𝗵𝗼𝗻 ✘**\n\n "
-                        link = "[𐇮 𝙕𝞝𝙇𝙕𝘼𝙇 الهہـيـٖ͡ـ͢ـبـه 𐇮](https://t.me/zzzzl1l)"
-                        text += "- يمكنك الإبـلاغ عن هـذا الاشعـار .. "
-                        text += f"- فقط قم بإعـادة توجيـه هـذه الرسـالة إلى مطـور السـورس {link}.\n"
+                        text = "**✘ ڕاپۆرتی ئاگاداری بۆتی زیرەك 𝙄𝙌 ✘**\n\n "
+                        link = "[𐇮 𝙑𝙏𝙑𝙄𝙏 𝞝 بۆتی زیرەك 𐇮](https://t.me/VTVIT)"
+                        text += "- دەتوانیت راپۆرتی ئەم تێبینیە بدەیت .. "
+                        text += f"- ناردنی ئەم نامەیە تەنھا بۆ گەشەپێدەری سەرچاوەیە {link}.\n"
                         text += (
-                            "- لـ اعـلام المطـور بالاشعـار .. حتـى يتـم ملاحظتـه\n\n"
+                            "- بۆ ئاگادارکردنەوەی گەشەپێدەرەکە لە ئاگاداریەکە .. تا ئەو کاتەی ئاگاداری دەکەیتەوە\n\n"
                         )
-                        text += f"**- رسـالة الإشعـار :** [{new['error']}]({pastelink})"
+                        text += f"**- نامەی ئاگاداری :** [{new['error']}]({pastelink})"
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
