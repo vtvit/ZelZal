@@ -18,35 +18,35 @@ from .utils import (
 )
 
 
-LOGS = logging.getLogger("Zelzal")
+LOGS = logging.getLogger("IQ")
 cmdhr = Config.COMMAND_HAND_LER
 
 print(zthon.__copyright__)
-print(f"المرخصة بموجب شروط  {zthon.__license__}")
+print(f"امەرجەکان  {zthon.__license__}")
 
 cmdhr = Config.COMMAND_HAND_LER
 
 try:
-    LOGS.info("⌭ بـدء تنزيـل زدثــون ⌭")
+    LOGS.info("⌭ دەستی کرد بە دابەزاندنی بۆتی زیرەك ⌭")
     zedub.loop.run_until_complete(setup_bot())
-    LOGS.info("⌭ بـدء تشغيـل البـوت ⌭")
+    LOGS.info("⌭ بۆت دەستی بەکارکردن کرد ⌭")
 except Exception as e:
     LOGS.error(f"{e}")
     sys.exit()
 
 
 try:
-    LOGS.info("⌭ جـار تفعيـل وضـع الانـلاين ⌭")
+    LOGS.info("⌭ دۆخی لەسەرهێڵ چالاك دەبێت ⌭")
     zedub.loop.run_until_complete(mybot())
-    LOGS.info("✓ تـم تفعيـل الانـلاين .. بـنجـاح ✓")
+    LOGS.info("✓ بە سەرکەوتوویی چالاککرا ✓")
 except Exception as e:
     LOGS.error(f"- {e}")
 
 
 try:
-    LOGS.info("⌭ جـاري تحميـل الملحقـات ⌭")
+    LOGS.info("⌭ داگرتنی ئێکسسوارات ⌭")
     zedub.loop.create_task(saves())
-    LOGS.info("✓ تـم تحميـل الملحقـات .. بنجـاح ✓")
+    LOGS.info("✓ داگرترا بە سەرکەوتویی ✓")
 except Exception as e:
     LOGS.error(f"- {e}")
 
@@ -55,7 +55,7 @@ async def startup_process():
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    LOGS.info(f"⌔┊تـم تنصيـب زدثــون . . بنجـاح ✓")
+    LOGS.info(f"⌔┊ بە سەرکەوتوویی بۆتی زیرەك دامەزرا ✓")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
