@@ -22,7 +22,7 @@ from ..sql_helper.global_collection import (
     get_collectionlist_items,
 )
 
-plugin_category = "ئامێرەکان"
+plugin_category = "الاداوت"
 cmdhd = Config.COMMAND_HAND_LER
 ENV = bool(os.environ.get("ENV", False))
 LOGS = logging.getLogger(__name__)
@@ -155,13 +155,14 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
 
 
 @zedub.zed_cmd(
-    pattern="نوێکردنەوە?$",
+    pattern="تحديث(| الان)?$",
     command=("update", plugin_category),
     info={
         "header": "بۆ نوێکردنەوەی بۆتی زیرەك",
         "بەکارهێنان": [
-            "{tr}نوێکردنەوە",
-            "{tr}نوێکردنەوەی بۆت",
+            "{tr}تحديث",
+            "{tr}تحديث الان",
+            "{tr}تحديث البوت",
         ],
     },
 )
@@ -255,7 +256,7 @@ async def upstream(event):
 
 
 @zedub.zed_cmd(
-    pattern="نوێکردنەوەی بۆت$",
+    pattern="تحديث البوت$",
 )
 async def upstream(event):
     if ENV:
