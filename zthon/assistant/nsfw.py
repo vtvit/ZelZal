@@ -20,7 +20,7 @@ async def age_verification_true(event: CallbackQuery):
             "Given That It's A Stupid-Ass Decision, I've Elected To Ignore It.",
             alert=True,
         )
-    await event.answer("Yes I'm 18+", alert=False)
+    await event.answer("بەڵێ من 18+", alert=False)
     buttons = [
         Button.inline(
             text="Unsure / Change of Decision ❔",
