@@ -349,4 +349,4 @@ async def paste(event):
         await event.edit(msg, buttons=buttons)
         CC.clear
     else:
-        await event.answer("انت لم تقم بنسخ اي شي لعمل له لصق ؟!")
+        await event.answer("انت لم تقم  اي شي لعمل له لصق ؟!")
