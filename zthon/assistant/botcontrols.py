@@ -127,7 +127,7 @@ async def ban_starters(event):
         return await edit_delete(event, "**- لايــوجد مشتـركين بالبـوت بعـد**")
     msg = "**- قـائمـة مشتـركيـن البـوت المسـاعـد الخـاص بـك :\n\n**"
     for user in ulist:
-        msg += f"**• المستخـدم :**  {_format.mentionuser(user.first_name , user.user_id)}\n**• الايـدي :** `{user.user_id}`\n**• المعـرف :** @{user.username}\n**• البيـانات : **__{user.date}__\n\n"
+        msg += f"**• بەکارهێنەر :**  {_format.mentionuser(user.first_name , user.user_id)}\n**• الايـدي :** `{user.user_id}`\n**• المعـرف :** @{user.username}\n**• البيـانات : **__{user.date}__\n\n"
     await edit_or_reply(event, msg)
 
 
