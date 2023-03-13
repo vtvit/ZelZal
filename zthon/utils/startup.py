@@ -32,7 +32,7 @@ from .pluginmanager import load_module
 from .tools import create_supergroup
 
 ENV = bool(os.environ.get("ENV", False))
-LOGS = logging.getLogger("ZedUBStartUP")
+LOGS = logging.getLogger("IQstartup")
 cmdhr = Config.COMMAND_HAND_LER
 
 if ENV:
@@ -82,8 +82,8 @@ async def startupmessage():
             Config.ZEDUBLOGO = await zedub.tgbot.send_file(
                 BOTLOG_CHATID,
                 "https://telegra.ph/file/f821d27af168206b472ad.mp4",
-                caption="**•⎆┊تـم بـدء تشغـيل سـورس زدثــون الخاص بك .. بنجاح 🧸♥️**",
-                buttons=[(Button.url("𝙕𝙀𝘿𝙏𝙝𝙤𝙣𓅛", "https://t.me/ZedThon"),)],
+                caption="**•⎆┊بۆتی زیرەكی تایبەت بە تۆ دەستی کرد بە کارکردن 🧸♥️**",
+                buttons=[(Button.url("𝑰𝑸 𝑼𝑺𝑬𝑹 𓅛", "https://t.me/IQUSER0"),)],
             )
     except Exception as e:
         LOGS.error(e)
@@ -99,7 +99,7 @@ async def startupmessage():
         if msg_details:
             await zedub.check_testcases()
             message = await zedub.get_messages(msg_details[0], ids=msg_details[1])
-            text = message.text + "\n\n**•⎆┊تـم اعـادة تشغيـل السـورس بنجــاح 🧸♥️**"
+            text = message.text + "\n\n**•⎆┊بە سەرکەوتوویی بۆت دەستیپێکردەوە 🧸♥️**"
             await zedub.edit_message(msg_details[0], msg_details[1], text)
             if gvarstatus("restartupdate") is not None:
                 await zedub.send_message(
@@ -119,25 +119,25 @@ async def mybot():
     Malath = bot.uid
     zel_zal = f"[{ZELZAL}](tg://user?id={Malath})"
     f"ـ {zel_zal}"
-    f"•⎆┊هــذا البــوت خــاص بـ {zel_zal} يمكـنك التواصــل معـه هـنا 🧸♥️"
+    f"•⎆┊ئەمە بۆتی تایبەت بەتۆیە {zel_zal} دەتوانیت پەیوەندیم پێوەبکەیت 🧸♥️"
     zilbot = await zedub.tgbot.get_me()
     bot_name = zilbot.first_name
     botname = f"@{zilbot.username}"
     if bot_name.endswith("Assistant"):
-        print("تم تشغيل البوت بنجــاح")
+        print("بە سەرکەوتوویی بۆت کاردەکات")
     else:
         try:
             await bot.send_message("@BotFather", "/setinline")
             await asyncio.sleep(1)
             await bot.send_message("@BotFather", botname)
             await asyncio.sleep(1)
-            await bot.send_message("@BotFather", "ZThon")
+            await bot.send_message("@BotFather", "IQBOT")
             await asyncio.sleep(3)
             await bot.send_message("@BotFather", "/setname")
             await asyncio.sleep(1)
             await bot.send_message("@BotFather", botname)
             await asyncio.sleep(1)
-            await bot.send_message("@BotFather", f"مسـاعـد - {bot.me.first_name} ")
+            await bot.send_message("@BotFather", f"یارمەتیدەر - {bot.me.first_name} ")
             await asyncio.sleep(3)
             await bot.send_message("@BotFather", "/setuserpic")
             await asyncio.sleep(1)
@@ -149,13 +149,13 @@ async def mybot():
             await asyncio.sleep(1)
             await bot.send_message("@BotFather", botname)
             await asyncio.sleep(1)
-            await bot.send_message("@BotFather", f"- بـوت زدثــون المسـاعـد ♥️🦾 الخـاص بـ  {bot.me.first_name} ")
+            await bot.send_message("@BotFather", f"- بـۆتـی زیـرەك یـارمەتیدەری ♥️🦾 تایبەت بەتۆ  {bot.me.first_name} ")
             await asyncio.sleep(3)
             await bot.send_message("@BotFather", "/setdescription")
             await asyncio.sleep(1)
             await bot.send_message("@BotFather", botname)
             await asyncio.sleep(1)
-            await bot.send_message("@BotFather", f"•⎆┊انـا البــوت المسـاعـد الخــاص بـ {zel_zal} \n•⎆┊بـواسطـتـي يمكـنك التواصــل مـع مـالكـي 🧸♥️\n•⎆┊قنـاة السـورس 🌐 @ZedThon 🌐")
+            await bot.send_message("@BotFather", f"•⎆┊من بۆتێکی یارمەتیدەرم تایبەت بەتۆ {zel_zal} \n•⎆┊لەلایەن تۆ دەتوانی پەیوەندی بە خاوەنەکەم بکەی 🧸♥️\n•⎆┊چەناڵی سەرچاوە 🌐 @IQUSER0 🌐")
         except Exception as e:
             print(e)
 
@@ -235,7 +235,7 @@ async def load_plugins(folder, extfolder=None):
                     failure.append(shortname)
                 os.remove(Path(f"{plugin_path}/{shortname}.py"))
                 LOGS.info(
-                    f"لا يمكنني تحميل {shortname} بسبب الخطأ {e}\nمجلد القاعده {plugin_path}"
+                    f"ناتوانم دایگرم {shortname} بە هۆکاری هەڵە {e}\nمجلد القاعده {plugin_path}"
                 )
     if extfolder:
         if not failure:
@@ -281,11 +281,11 @@ async def verifyLoggerGroup():
         descript = "لا تقم بحذف هذه المجموعة أو التغيير إلى مجموعة عامه (وظيفتهـا تخزيـن كـل سجـلات وعمليـات البـوت.)"
         photozed = await zedub.upload_file(file="zedthon/malath/Zpic.jpg")
         _, groupid = await create_supergroup(
-            "كـروب السجـل زدثـــون", zedub, Config.TG_BOT_USERNAME, descript, photozed
+            "گرووپی ئاگاداریەکانی 𝙄𝙌", zedub, Config.TG_BOT_USERNAME, descript, photozed
         )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print(
-            "المجموعه الخاصه لفار الـ PRIVATE_GROUP_BOT_API_ID تم حفظه بنجاح و اضافه الفار اليه."
+            "المجموعه الخاصه لفار الـ PRIVATE_GROUP_BOT_API_ID گرووپی ئاگادارییەکان دروست بوو."
         )
         flag = True
     if PM_LOGGER_GROUP_ID != -100:
@@ -301,19 +301,19 @@ async def verifyLoggerGroup():
                         "لا تمتلك صلاحيات اضافه اعضاء في مجموعة فار الـ  PM_LOGGER_GROUP_ID."
                     )
         except ValueError:
-            LOGS.error("PM_LOGGER_GROUP_ID لم يتم العثور على قيمه هذا الفار . تاكد من أنه صحيح .")
+            LOGS.error("PM_LOGGER_GROUP_ID هیچ شتێك نەدۆزرایەوە لەم ڤارە. دڵنیابە لەوەی ڕاستە  .")
         except TypeError:
-            LOGS.error("PM_LOGGER_GROUP_ID قيمه هذا الفار خطا. تاكد من أنه صحيح.")
+            LOGS.error("PM_LOGGER_GROUP_ID هەڵەیە تکایە دڵنیابەوە.")
         except Exception as e:
-            LOGS.error("حدث خطأ اثناء التعرف على فار PM_LOGGER_GROUP_ID.\n" + str(e))
+            LOGS.error("هەڵەیەك لە ناسنامەی ڤار PM_LOGGER_GROUP_ID.\n" + str(e))
     else:
-        descript = "لا تقم بحذف هذه المجموعة أو التغيير إلى مجموعة عامه (وظيفتهـا تخزيـن رسـائل الخـاص.)"
+        descript = "ئەم گرووپە بسڕەوە یان بگۆڕە بۆ گروپێکی گشتی (کارەکەی بریتییە لە سەیڤکردنی نامە تایبەتەکان.)"
         photozed = await zedub.upload_file(file="zedthon/malath/Apic.jpg")
         _, groupid = await create_supergroup(
-            "كـروب التخـزين", zedub, Config.TG_BOT_USERNAME, descript, photozed
+            "گرووپی سەیڤکراوەکان", zedub, Config.TG_BOT_USERNAME, descript, photozed
         )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
-        print("تم عمل الكروب التخزين بنجاح واضافة الفارات اليه.")
+        print("گرووپی سەیڤکراوەکان دروست کرا و ڤارەکانی زیادبوو.")
         flag = True
     if flag:
         executable = sys.executable.replace(" ", "\\ ")
