@@ -67,10 +67,10 @@ async def ban_user_from_bot(user, reason, reply_to=None):
     )
     await zedub.tgbot.send_message(user.id, banned_msg)
     info = f"**حظـر_شخـص_من_البـوت_المسـاعد**\
-            \n\n**- المستخـدم 👤 :** {_format.mentionuser(get_display_name(user) , user.id)}\
-            \n**- الاسـم :** {user.first_name}\
-            \n**- الايـدي :** `{user.id}`\
-            \n**- السبب :** `{reason}`"
+            \n\n**- بەکارهێنەر👤 :** {_format.mentionuser(get_display_name(user) , user.id)}\
+            \n**- ناو :** {user.first_name}\
+            \n**- ناسنامە :** `{user.id}`\
+            \n**- هۆکار :** `{reason}`"
     if BOTLOG:
         await zedub.send_message(BOTLOG_CHATID, info)
     return info
@@ -84,12 +84,12 @@ async def unban_user_from_bot(user, reason, reply_to=None):
     banned_msg = "**- لقد تم إلغاء حظـرك من هذا البـوت. من الآن فصاعـدًا ، يمكنك إرسال رسائل هنا للتواصل مع مطـوري.**"
 
     if reason is not None:
-        banned_msg += f"\n**- السبب :** {reason}"
+        banned_msg += f"\n**- هۆکار :** {reason}"
     await zedub.tgbot.send_message(user.id, banned_msg)
     info = f"**الغـاء_حظـر_شخـص_من_البـوت_المسـاعد**\
-            \n\n**- المستخـدم 👤 :** {_format.mentionuser(get_display_name(user) , user.id)}\
-            \n**- الاسـم :** {user.first_name}\
-            \n**- الايـدي :** `{user.id}`"
+            \n\n**- بەکارهێنەر👤 :** {_format.mentionuser(get_display_name(user) , user.id)}\
+            \n**- ناو :** {user.first_name}\
+            \n**- ناسنامە :** `{user.id}`"
     if BOTLOG:
         await zedub.send_message(BOTLOG_CHATID, info)
     return info
